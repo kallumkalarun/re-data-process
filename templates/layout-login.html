@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/> -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style-login.css' %}">
+    <link rel="icon" href="{% static 'img/flask-line.png' %}" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <script src="{% static 'js/main.js' %}" defer></script>
+
+
+    <title>
+      
+        {% block title %}
+        Research Data Process
+        {% endblock %}
+    </title>
+
+
+</head>
+<body>
+
+          <!--=============== HEADER ===============-->
+          <header class="header">
+            <nav class="nav container">
+               <div class="nav__data">
+                  
+                  <a href="" class="nav__logo">
+                     <img src="{% static 'img/rd-logo.png' %}" alt="Research Data Logo" id = "header" class="img-logo" style="width: 15%;">
+                     <!-- <i class="ri-planet-line1"> </i> -->
+                     &nbsp; &nbsp;  Research Data Process      &nbsp; &nbsp;                    
+                  </a>
+                  
+                  <div class="nav__toggle" id="nav-toggle">
+                     <i class="ri-menu-line nav__burger"></i>
+                     <i class="ri-close-line nav__close"></i>
+                  </div>
+               </div>
+   
+               
+               <!--=============== NAV MENU ===============-->
+               <div class="nav__menu {% if disable_menu %}disabled-menu{% endif %}" id="nav-menu">
+                  <ul class="nav__list">
+                    
+                     <li><a href="/" class="nav__link">
+                        <i class="ri-home-heart-line"></i>&nbsp;Home
+                     </a></li>
+                     
+                    {% if user.is_authenticated %}
+                     <!--=============== DROPDOWN 1 ===============-->
+                     <li class="dropdown__item">
+                        <div class="nav__link">
+                           GDC <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
+   
+                        <ul class="dropdown__menu">
+                           <li>
+                              <a href="#" class="dropdown__link">
+                                 <i class="ri-folder-settings-line"></i> Search Data
+                              </a>                          
+                           </li>
+   
+                        </ul>
+                     </li>
+
+
+                   <!--=============== DROPDOWN 1 ===============-->
+                   <li class="dropdown__item">
+                     <div class="nav__link">
+                        Data Analysis <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                     </div>
+
+                     <ul class="dropdown__menu">
+  
+                        <!--=============== DROPDOWN SUBMENU1 ===============-->
+                        <li class="dropdown__subitem">
+                           <div class="dropdown__link">
+                              <i class="ri-price-tag-2-line"></i> Confocal Microscopy<i class="ri-add-line dropdown__add"></i>
+                           </div>
+
+                           <ul class="dropdown__submenu">
+                              <li>
+                                 <a href="#" class="dropdown__sublink">
+                                    <i class="ri-price-tag-line"></i> PLA Calculation
+                                 </a>
+                              </li>
+      
+                              <li>
+                                 <a href="#" class="dropdown__sublink">
+                                    <i class="ri-price-tag-3-line"></i> Colocalization
+                                 </a>
+                              </li>
+      
+                           </ul>
+                        </li>
+
+                        <!--=============== DROPDOWN SUBMENU2 ===============-->
+                        <li class="dropdown__subitem">
+                           <div class="dropdown__link">
+                              <i class="ri-price-tag-2-line"></i> Electron Microscopy <i class="ri-add-line dropdown__add"></i>
+                           </div>
+                        
+                           <ul class="dropdown__submenu">
+                              <li>
+                                 <a href="#" class="dropdown__sublink">
+                                    <i class="ri-price-tag-line"></i> TEM Calculation
+                                 </a>
+                              </li>
+                              
+                              <li>
+                                 <a href="#" class="dropdown__sublink">
+                                    <i class="ri-price-tag-3-line"></i> SEM Calculation
+                                 </a>
+                              </li>
+                              
+                           </ul>
+                        </li>
+
+
+                     </ul>
+                  </li>
+
+                     {% endif %}
+                     
+                     <!--=============== DROPDOWN 2 ===============-->
+                     <li class="dropdown__item">
+                        <div class="nav__link">
+                           <i class="ri-user-line"></i> User <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
+   
+                        <ul class="dropdown__menu">
+
+                           {% if not user.is_authenticated %}
+                           <li>
+                              <a href="{% url 'users:login' %}" class="dropdown__link">
+                                 <i class="ri-lock-line"></i> Login
+                              </a>                          
+                           </li>
+                           {% else %}
+
+                           {% comment %} <li>
+                              <a href="{% url 'users:register' %}" class="dropdown__link">
+                                 <i class="ri-registered-line"></i> Register
+                              </a>                          
+                           </li>
+
+                           <li>
+                              <a href="#" class="dropdown__link">
+                                 <i class="ri-lock-password-line"></i> Change Password
+                              </a>
+                           </li> {% endcomment %}
+   
+                           <li>
+                              
+                              {% comment %} <a href="{% url 'users:logout' %}" class="dropdown__link">
+                                 <i class="ri-lock-unlock-line"></i> Log out
+                              </a>  {% endcomment %}
+
+                              <form class="dropdown__link" action="{% url 'users:logout' %}" method="post">
+                                 {% csrf_token %}
+                                 <button type="submit" class="dropdown__link">
+                                     <i class="ri-lock-unlock-line"></i> Log out
+                                 </button>
+                             </form>
+
+                           </li>
+
+                           {% endif %}
+
+                        </ul>
+                     </li>
+   
+                     <li><a href="{% url 'users:help' %}" class="nav__link">
+                        <i class="ri-customer-service-2-line"></i> Help
+                     </a></li>
+                  </ul>
+               </div>
+               
+            </nav>
+         </header>
+   
+   <main>
+      {% block content %}
+         Main body content
+      {% endblock %}
+   </main>
+
+         <!--=============== MAIN JS ===============-->
+        <!-- <script src="assets/js/main.js"></script>-->
+         <script src="{% static 'js/main.js' %}" defer></script>
+
+</body>
+</html>

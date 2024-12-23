@@ -1,0 +1,22 @@
+{% extends 'layout-login.html' %}
+
+{% block title %}
+    Register New User
+{% endblock %}
+
+{% block content %}
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action="{% url 'users:register' %}" method="POST">
+        <h3>New User Sign up</h3>
+        {% csrf_token %}
+        {{ form }}
+        
+        <button type="submit">Sign Up</button>
+        <br><br>
+        <a href="{% url 'users:login' %}" >I have an account</a>
+
+    </form>
+{% endblock %}

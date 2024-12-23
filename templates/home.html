@@ -1,0 +1,70 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+Research Data Process
+{% endblock %}
+
+{% block content %}
+    <!--  <h1>SWAMI SARANAM</h1> -->
+
+    <style>
+        body {
+            background-image: url('{% static 'img/cl-research.jpg' %}'); /* Set background image */
+            background-size: cover; /* Cover entire viewport */
+            background-position: left top; /* Position image at left top */
+            background-repeat: no-repeat; /* Prevent image repetition */
+        }
+        .container-home {
+            display: flex; /* Use flexbox for layout */
+            min-height: 80vh; /* Set minimum height to viewport height */
+        }
+        .image-container-home {
+            flex: 0 0 50%; /* Set width to 50% */
+            background-color: rgba(255, 255, 255, 0); /* Make background transparent */ 
+        }
+        .text-box-home {
+            flex: 1; /* Make text-box take remaining space */
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left; /* Align text to left */
+            box-shadow: 0 5px 10px rgba(0, 0, 0.1, 0.1); /* Add box-shadow */
+            font-family: Arial, sans-serif;
+        }
+        .ul-bullet-home {
+            list-style-type: square; /* Change bullet style to squares */
+            margin-left: 20px; /* Add some margin to the left */
+          }
+
+        
+
+    </style>
+
+    <div class="container-home">
+        <div class="image-container-home"></div>
+        <div class="text-box-home">
+            <center><h2>Research Data Processing</h2></center>
+            <br><br><br><br>
+            <p>
+                <ul class="ul-bullet-home">
+                    <li>The Genomic Data Commons (GDC) is a research program of the National Cancer Institute (NCI). The mission of the GDC is to provide the cancer research community with a unified repository and cancer knowledge base that enables data sharing across cancer genomic studies in support of precision medicine.</li>
+                    <ul>
+                        <br>API search based on Primary Site : GDC -> Search DAta -> Select Primary Site -> Submit. 
+                    </ul>
+                </ul>
+                <br>
+
+
+            </p>
+            <br>
+            <p>
+
+            </p>
+
+
+        </div>
+    </div>
+
+{% endblock %} 

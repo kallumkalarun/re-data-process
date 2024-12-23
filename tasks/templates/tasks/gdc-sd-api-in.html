@@ -1,0 +1,53 @@
+{% extends 'layout-login.html' %}
+
+{% block title %}
+  GDC Search Data
+{% endblock %}
+
+
+{% block content %}
+
+<p style="max-width: 600px; padding: 10px; margin-top: 95px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box; color: black;">
+  <b>GDC API : Search Data</b>
+  <br><br><br>
+
+    
+  The GDC API will return the result set in the form of JSON data set, based on the custom user selected parameter for the filed of 'primary site' from the endpoint 'files'.
+  
+  <br><br><br>
+   
+  Select any 'primary site' parameter from the dropdown list and click submit to retrieve data.
+
+  <br><br><br>
+</P>
+
+
+<form method="post" action="{% url 'tasks:gdc-sd-api-out' %}" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+    <h3>GDC Search Data</h3>
+    {% csrf_token %}
+    <br>
+    
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <br>
+
+      
+    <label for="lang">Select Primary Site : </label><br>
+    <select name="select_psite" id="lang" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box; color: black;"> 
+          <option value="Select" style="color: black;">Select</option>
+          <option value="Lung" style="color: black;">Lung</option>
+          <option value="Kidney" style="color: black;">Kidney</option>
+          <option value="Brain" style="color: black;">Brain</option>
+          <option value="Blood" style="color: black;">Blood</option>
+    </select>
+    <br><br>
+    <br><br>
+    <br><br>
+    <input type="submit" value="Submit" style="background-color:rgb(8, 59, 117); color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; display: block; width: 100%;">
+    <br><br>
+    <br><br>
+    
+    <a href="{% url 'home'%}" style="background-color:rgb(118, 121, 124); color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; display: block; width: 100%; text-align: center;">Exit</a> 
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'layout-login.html' %}
+
+{% block title %}
+    User Login
+{% endblock %}
+
+{% block content %}
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action="{% url 'users:login' %}" method="POST">
+        <h3>Login Here</h3>
+        {% csrf_token %}
+        {{ form }}
+
+        {% if request.GET.next %}
+            <input type="hidden" name ="next" value= "{{ request.GET.next }}" />
+        {% endif %}
+        
+        {% comment %} <button class="form-submit">Login</button> {% endcomment %}
+        <button type="submit">Log In</button>
+        <br><br>
+        {% comment %} <a href="{% url 'users:register' %}" >Create a account</a> {% endcomment %}
+
+    </form>
+{% endblock %}
